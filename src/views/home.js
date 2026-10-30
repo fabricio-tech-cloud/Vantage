@@ -78,7 +78,6 @@ export default {
       <div class="metric-tabs">
         <button class="metric-tab ${metric === "value" ? "is-active" : ""}" data-metric="value">Value</button>
         <button class="metric-tab ${metric === "perf" ? "is-active" : ""}" data-metric="perf">Performance</button>
-        <button class="icon-btn info-btn" data-action="info" aria-label="Info">${I.info()}</button>
         <button class="icon-btn info-btn" data-action="privacy" aria-label="Hide balances">${state.settings.hideBalances ? I.eyeOff() : I.eye()}</button>
       </div>
       ${
@@ -238,9 +237,6 @@ export default {
         case "privacy":
           update((s) => (s.settings.hideBalances = !s.settings.hideBalances), "settings");
           break;
-        case "info":
-          openInfo();
-          break;
         case "customize":
           openCustomize();
           break;
@@ -288,18 +284,6 @@ function aiBody(sym) {
   return `<p class="news-symbol">${esc(sym)} — ${esc(q.name.toUpperCase())} ${esc(q.exch)} <span class="${signClass(q.chgPct)}" data-live="pct:${esc(sym)}">${fmtPct(q.chgPct)}</span></p>
     <ul>${bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
     <div class="news-links">${news.map((n) => `<button class="news-link" data-href="/news/${n.id}"><span>${esc(n.source)}</span>${esc(n.title)}</button>`).join("")}</div>`;
-}
-
-function openInfo() {
-  openSheet({
-    title: "About these figures",
-    html: `<div class="info-list">
-      <p><strong>Value</strong> shows the combined Net Liquidation Value of all accounts selected in <em>Manage accounts</em>: cash plus the market value of positions, converted to ${dispCcy()} at live FX rates.</p>
-      <p><strong>Performance</strong> shows the time-weighted return (TWR) of the combined portfolio over the selected period, which removes the effect of deposits and withdrawals.</p>
-      <p><strong>My accounts</strong> are accounts you own. <strong>Client accounts</strong> are accounts you are authorised to view. Toggle which accounts are included under <em>Account → Manage accounts</em>.</p>
-      <p class="muted small">Values update with simulated market data. Day P&L is computed from the previous close.</p>
-    </div>`,
-  });
 }
 
 function openCustomize() {
