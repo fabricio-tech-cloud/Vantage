@@ -1,0 +1,8 @@
+{
+  "livePreview.openPreviewTarget": "Embedded Preview",
+  "livePreview.useIntegratedBrowser": true,
+  "livePreview.autoRefreshPreview": "On All Changes in Editor",
+  "livePreview.portNumber": 3000,
+  "livePreview.defaultPreviewPath": "/",
+  "mobile-preview.url": "http://localhost:3000"
+}
